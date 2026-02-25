@@ -3,291 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ultimate Financial Tool</title>
+    <title>Net Worthy | Total Net Worth & Retirement Dashboard</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-        --glass-bg: rgba(255, 255, 255, 0.65);
-        --glass-border: rgba(255, 255, 255, 0.4);
-        --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
-
-        --text-main: #1d1d1f;
-        --text-muted: #86868b;
-        --accent-blue: #007aff;
-        --accent-green: #34c759;
-        --accent-purple: #af52de;
-        --accent-orange: #ff9500;
-        --danger: #ff3b30;
-      }
-
-      body {
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
-        background: var(--bg-gradient);
-        background-attachment: fixed;
-        color: var(--text-main);
-        line-height: 1.6;
-        margin: 0;
-        padding: 30px 15px;
-      }
-
-      .dashboard {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 25px;
-        align-items: stretch;
-      }
-
-      @media (min-width: 992px) {
-        .dashboard {
-          grid-template-columns: 1fr 1fr;
-        }
-        .full-width {
-          grid-column: 1 / -1;
-        }
-        .two-col-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 25px;
-          align-items: stretch;
-        }
-        .epf-split {
-          display: grid;
-          grid-template-columns: 2fr 1fr;
-          gap: 30px;
-          align-items: stretch;
-        }
-      }
-
-      .glass-card {
-        background: var(--glass-bg);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid var(--glass-border);
-        border-radius: 24px;
-        box-shadow: var(--glass-shadow);
-        padding: 25px;
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
-      }
-
-      .glass-card:hover {
-        box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.08);
-      }
-
-      .card-header {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-shrink: 0;
-      }
-
-      .icon-blue {
-        color: var(--accent-blue);
-      }
-      .icon-green {
-        color: var(--accent-green);
-      }
-      .icon-purple {
-        color: var(--accent-purple);
-      }
-      .icon-orange {
-        color: var(--accent-orange);
-      }
-
-      .input-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-      }
-
-      .input-group {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .input-group label {
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: var(--text-muted);
-        margin-bottom: 4px;
-      }
-
-      .input-group input,
-      .input-group select {
-        padding: 12px 16px;
-        background: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        border-radius: 12px;
-        font-family: inherit;
-        font-size: 0.95rem;
-        color: var(--text-main);
-        transition: all 0.2s ease;
-      }
-
-      .input-group input:focus,
-      .input-group select:focus {
-        outline: none;
-        border-color: var(--accent-blue);
-        background: #fff;
-        box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.15);
-      }
-
-      .input-unit {
-        font-size: 0.75rem;
-        color: var(--accent-blue);
-        margin-top: 4px;
-        font-weight: 500;
-        min-height: 14px;
-      }
-
-      button.btn-primary {
-        background: var(--text-main);
-        color: #fff;
-        border: none;
-        border-radius: 14px;
-        padding: 16px 24px;
-        font-size: 1.05rem;
-        font-weight: 600;
-        cursor: pointer;
-        width: 100%;
-        margin-top: auto;
-        transition:
-          transform 0.1s,
-          background 0.2s;
-        flex-shrink: 0;
-      }
-
-      button.btn-primary:hover {
-        background: #000;
-      }
-      button.btn-primary:active {
-        transform: scale(0.98);
-      }
-
-      .net-worth-banner {
-        background: linear-gradient(135deg, var(--text-main) 0%, #434343 100%);
-        color: white;
-        text-align: center;
-        padding: 40px 20px;
-        border-radius: 24px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-      }
-
-      .net-worth-value {
-        font-size: 3rem;
-        font-weight: 700;
-        margin: 10px 0 0 0;
-        letter-spacing: -1px;
-      }
-
-      .unit-text {
-        font-size: 0.95rem;
-        color: #a1a1a6;
-        font-weight: normal;
-        margin-left: 6px;
-      }
-
-      .breakdown-row {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .breakdown-item span {
-        display: block;
-        font-size: 0.85rem;
-        color: rgba(255, 255, 255, 0.7);
-      }
-      .breakdown-item strong {
-        font-size: 1.2rem;
-      }
-
-      .result-box {
-        margin-top: auto;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.03);
-        border-radius: 12px;
-        flex-shrink: 0;
-      }
-
-      .result-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-        font-size: 0.95rem;
-      }
-
-      .result-row span:last-child {
-        text-align: right;
-      }
-
-      .result-row:last-child {
-        margin-bottom: 0;
-        font-weight: 600;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-        padding-top: 8px;
-      }
-
-      .table-container {
-        max-height: 400px;
-        overflow-y: auto;
-        border-radius: 12px;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        flex: 1 1 auto;
-        min-height: 0;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.85rem;
-        background: rgba(255, 255, 255, 0.5);
-      }
-      th,
-      td {
-        padding: 10px 12px;
-        text-align: right;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
-      th:first-child,
-      td:first-child {
-        text-align: center;
-      }
-      th {
-        background: rgba(0, 0, 0, 0.04);
-        font-weight: 600;
-        color: var(--text-muted);
-        position: sticky;
-        top: 0;
-        backdrop-filter: blur(10px);
-      }
-
-      .swp-income-input {
-        display: none;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="dashboard">
@@ -325,9 +46,7 @@
       </div>
 
       <div class="glass-card">
-        <div class="card-header">
-          <span class="icon-blue">●</span> SIP Portfolio
-        </div>
+        <div class="card-header">📈 SIP Portfolio</div>
         <div class="input-grid" style="margin-bottom: 20px">
           <div class="input-group">
             <label>Monthly SIP (₹)</label>
@@ -370,9 +89,7 @@
       </div>
 
       <div class="glass-card">
-        <div class="card-header">
-          <span class="icon-purple">●</span> Pure Savings / FD
-        </div>
+        <div class="card-header">🏦 Pure Savings / FD</div>
         <div class="input-grid" style="margin-bottom: 20px">
           <div class="input-group">
             <label>Monthly Savings (₹)</label>
@@ -383,6 +100,10 @@
               data-currency="true"
             />
             <div class="input-unit" id="unit-savAmount"></div>
+          </div>
+          <div class="input-group">
+            <label>Step-up Annually (%)</label>
+            <input type="number" id="savStepUp" value="10" />
           </div>
           <div class="input-group">
             <label>Compounding Return (% Optional)</label>
@@ -407,9 +128,7 @@
       </div>
 
       <div class="glass-card full-width">
-        <div class="card-header">
-          <span class="icon-green">●</span> Provident Fund (EPF)
-        </div>
+        <div class="card-header">🏢 Provident Fund (EPF)</div>
         <div class="epf-split">
           <div class="input-grid">
             <div class="input-group">
@@ -482,17 +201,31 @@
         style="display: none"
       >
         <div class="card-header">
-          <span class="icon-blue">●</span> SIP Projection Table
+          <div>📊 Net Worth Projection Table</div>
+          <div
+            style="
+              font-size: 0.8rem;
+              color: var(--text-muted);
+              font-weight: normal;
+              margin-left: auto;
+            "
+          >
+            * I-A = Inflation-Adjusted
+          </div>
         </div>
         <div class="table-container" style="max-height: 500px">
           <table>
             <thead>
               <tr>
                 <th>Year</th>
+                <th>Monthly Salary (Nominal)</th>
+                <th>Monthly Salary (I-A)</th>
                 <th>Monthly SIP (Nominal)</th>
                 <th>Monthly SIP (I-A)</th>
-                <th>Portfolio Value (Nominal)</th>
-                <th>Portfolio Value (I-A)</th>
+                <th>Monthly Savings (Nominal)</th>
+                <th>Monthly Savings (I-A)</th>
+                <th>SIP Portfolio Value (Nominal)</th>
+                <th>SIP Portfolio Value (I-A)</th>
               </tr>
             </thead>
             <tbody id="sipTableBody"></tbody>
@@ -503,9 +236,9 @@
       <div class="full-width two-col-grid" style="margin-top: 10px">
         <div class="glass-card">
           <div class="card-header" style="justify-content: space-between">
-            <div><span class="icon-orange">●</span> Systematic Withdrawal</div>
+            <div>📉 Inflation Value</div>
             <button
-              onclick="pullNetWorthToSWP()"
+              onclick="pullNetWorthToInflation()"
               style="
                 background: var(--text-main);
                 color: #fff;
@@ -517,6 +250,63 @@
               "
             >
               Use Net Worth
+            </button>
+          </div>
+          <div class="input-grid" style="margin-bottom: 20px">
+            <div class="input-group">
+              <label>Corpus (₹)</label>
+              <input
+                type="number"
+                id="infCorpus"
+                value="10000000"
+                data-currency="true"
+              />
+              <div class="input-unit" id="unit-infCorpus"></div>
+            </div>
+            <div class="input-group">
+              <label>Annual Inflation Rate (%)</label>
+              <input type="number" id="infRate" value="6" />
+            </div>
+            <div class="input-group">
+              <label>Horizon (Years)</label>
+              <input type="number" id="infHorizon" value="15" />
+            </div>
+          </div>
+          <button
+            class="btn-primary"
+            onclick="calculateInflation()"
+            style="margin-bottom: 20px"
+          >
+            Calculate Real Value
+          </button>
+          <div class="result-box">
+            <div class="result-row">
+              <span>Purchasing Power (Adjusted Value):</span>
+              <span
+                id="resInfValue"
+                style="color: var(--danger); font-size: 1.1rem"
+                >₹0</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header" style="justify-content: space-between">
+            <div>💸 Systematic Withdrawal</div>
+            <button
+              onclick="pullIAWorthToSWP()"
+              style="
+                background: var(--text-main);
+                color: #fff;
+                border: none;
+                border-radius: 8px;
+                padding: 6px 12px;
+                cursor: pointer;
+                font-size: 0.8rem;
+              "
+            >
+              Use I-A Worth
             </button>
           </div>
           <div class="input-grid" style="margin-bottom: 20px">
@@ -575,317 +365,42 @@
             Calculate SWP
           </button>
         </div>
+      </div>
 
-        <div class="glass-card" id="swpTableSection" style="display: none">
-          <div class="card-header">
-            <span class="icon-orange">●</span> Withdrawal Projection
+      <div
+        class="glass-card full-width"
+        id="swpTableSection"
+        style="display: none; margin-top: 15px"
+      >
+        <div class="card-header">
+          <div>🔮 Withdrawal Projection</div>
+          <div
+            style="
+              font-size: 0.8rem;
+              color: var(--text-muted);
+              font-weight: normal;
+              margin-left: auto;
+            "
+          >
+            * I-A = Inflation-Adjusted
           </div>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Year</th>
-                  <th>Monthly Withdrawal (I-A)</th>
-                  <th>Portfolio Value (EoY)</th>
-                </tr>
-              </thead>
-              <tbody id="swpTableBody"></tbody>
-            </table>
-          </div>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Monthly Withdrawal (I-A)</th>
+                <th>Portfolio Value (Nominal)</th>
+                <th>Portfolio Value (I-A)</th>
+              </tr>
+            </thead>
+            <tbody id="swpTableBody"></tbody>
+          </table>
         </div>
       </div>
     </div>
 
-    <script>
-      // Utility Formatting
-      const formatCurrency = (num) =>
-        new Intl.NumberFormat("en-IN", {
-          style: "currency",
-          currency: "INR",
-          maximumFractionDigits: 0,
-        }).format(num);
-
-      const formatUnit = (num) => {
-        if (isNaN(num) || num < 100000) return "";
-        if (num >= 10000000) return `(${(num / 10000000).toFixed(2)} Cr)`;
-        if (num >= 100000) return `(${(num / 100000).toFixed(2)} L)`;
-        return "";
-      };
-
-      // Helper for generating smaller unit text in the result boxes
-      const formatSmallUnit = (val) => {
-        const unit = formatUnit(val);
-        return unit
-          ? `<span style="font-size: 0.75rem; color: var(--text-muted); font-weight: normal; margin-left: 4px;">${unit}</span>`
-          : "";
-      };
-
-      // Auto-update input units on load and typing
-      function updateInputUnits() {
-        const currencyInputs = document.querySelectorAll(
-          'input[data-currency="true"]',
-        );
-        currencyInputs.forEach((input) => {
-          const val = parseFloat(input.value) || 0;
-          const unitDiv = document.getElementById(`unit-${input.id}`);
-          if (unitDiv)
-            unitDiv.innerText = formatUnit(val)
-              .replace("(", "")
-              .replace(")", "");
-
-          input.addEventListener("input", function () {
-            const currentVal = parseFloat(this.value) || 0;
-            unitDiv.innerText = formatUnit(currentVal)
-              .replace("(", "")
-              .replace(")", "");
-          });
-        });
-      }
-
-      // Dynamic Safe Withdrawal Rate Readout calculation
-      function updateSWRReadout() {
-        const total =
-          parseFloat(document.getElementById("swpTotal").value) || 0;
-        const swr = parseFloat(document.getElementById("swpSWR").value) || 0;
-        const monthly = (total * (swr / 100)) / 12;
-
-        const readoutDiv = document.getElementById("swrReadout");
-        if (total > 0 && swr > 0) {
-          readoutDiv.innerText = `≈ ${formatCurrency(monthly)} / month`;
-        } else {
-          readoutDiv.innerText = "";
-        }
-      }
-
-      // Global Store
-      let globalNetWorth = 0;
-
-      function toggleSWPInput() {
-        const method = document.getElementById("swpMethod").value;
-        if (method === "swr") {
-          document.querySelector(".swp-swr-input").style.display = "flex";
-          document.querySelector(".swp-income-input").style.display = "none";
-          updateSWRReadout();
-        } else {
-          document.querySelector(".swp-swr-input").style.display = "none";
-          document.querySelector(".swp-income-input").style.display = "flex";
-        }
-      }
-
-      function pullNetWorthToSWP() {
-        if (globalNetWorth > 0) {
-          const swpInput = document.getElementById("swpTotal");
-          swpInput.value = Math.round(globalNetWorth);
-          swpInput.dispatchEvent(new Event("input"));
-          updateSWRReadout();
-        }
-      }
-
-      function calculateNetWorth() {
-        // --- 1. SIP Logic & Table ---
-        const sipAmt =
-          parseFloat(document.getElementById("sipAmount").value) || 0;
-        const sipStep =
-          parseFloat(document.getElementById("sipStepUp").value) || 0;
-        const sipRet =
-          (parseFloat(document.getElementById("sipReturn").value) || 0) /
-          12 /
-          100;
-        const sipInf =
-          parseFloat(document.getElementById("sipInflation").value) || 0;
-        const sipHoriz =
-          parseInt(document.getElementById("sipHorizon").value) || 0;
-
-        let sipCorpus = 0;
-        let sipValue = 0;
-        let currSip = sipAmt;
-
-        const sipTbody = document.getElementById("sipTableBody");
-        sipTbody.innerHTML = "";
-
-        for (let y = 1; y <= sipHoriz; y++) {
-          for (let m = 1; m <= 12; m++) {
-            sipCorpus += currSip;
-            sipValue = (sipValue + currSip) * (1 + sipRet);
-          }
-
-          let inflationFactor = Math.pow(1 + sipInf / 100, y);
-          let infAdjSip = currSip / inflationFactor;
-          let infAdjValue = sipValue / inflationFactor;
-
-          let row = document.createElement("tr");
-          row.innerHTML = `
-                <td>${y}</td>
-                <td>${formatCurrency(currSip)} ${formatUnit(currSip)}</td>
-                <td style="color: var(--accent-purple);">${formatCurrency(infAdjSip)} ${formatUnit(infAdjSip)}</td>
-                <td>${formatCurrency(sipValue)} ${formatUnit(sipValue)}</td>
-                <td style="color: var(--accent-green);">${formatCurrency(infAdjValue)} ${formatUnit(infAdjValue)}</td>
-            `;
-          sipTbody.appendChild(row);
-
-          currSip *= 1 + sipStep / 100;
-        }
-
-        document.getElementById("resSipCorpus").innerHTML =
-          `${formatCurrency(sipCorpus)} ${formatSmallUnit(sipCorpus)}`;
-        document.getElementById("resSipGains").innerHTML =
-          `${formatCurrency(sipValue - sipCorpus)} ${formatSmallUnit(sipValue - sipCorpus)}`;
-        document.getElementById("resSipTotal").innerHTML =
-          `${formatCurrency(sipValue)} ${formatSmallUnit(sipValue)}`;
-        document.getElementById("sipTableSection").style.display = "flex";
-
-        // --- 2. Savings Logic ---
-        const savAmt =
-          parseFloat(document.getElementById("savAmount").value) || 0;
-        const savRet =
-          (parseFloat(document.getElementById("savReturn").value) || 0) /
-          12 /
-          100;
-        const savHoriz =
-          parseInt(document.getElementById("savHorizon").value) || 0;
-
-        let savCorpus = 0;
-        let savValue = 0;
-
-        for (let y = 1; y <= savHoriz; y++) {
-          for (let m = 1; m <= 12; m++) {
-            savCorpus += savAmt;
-            savValue = (savValue + savAmt) * (1 + savRet);
-          }
-        }
-
-        document.getElementById("resSavCorpus").innerHTML =
-          `${formatCurrency(savCorpus)} ${formatSmallUnit(savCorpus)}`;
-        document.getElementById("resSavGains").innerHTML =
-          `${formatCurrency(savValue - savCorpus)} ${formatSmallUnit(savValue - savCorpus)}`;
-        document.getElementById("resSavTotal").innerHTML =
-          `${formatCurrency(savValue)} ${formatSmallUnit(savValue)}`;
-
-        // --- 3. EPF Logic ---
-        const epfSal =
-          parseFloat(document.getElementById("epfSalary").value) || 0;
-        const epfHike =
-          parseFloat(document.getElementById("epfHike").value) || 0;
-        const epfRate =
-          (parseFloat(document.getElementById("epfRate").value) || 0) /
-          12 /
-          100;
-        const epfEmp = parseFloat(document.getElementById("epfEmp").value) || 0;
-        const epfEmpr =
-          parseFloat(document.getElementById("epfEmpr").value) || 0;
-        const epfHoriz =
-          parseInt(document.getElementById("epfHorizon").value) || 0;
-
-        let epfCorpus = 0;
-        let epfValue = 0;
-        let currSal = epfSal;
-
-        for (let y = 1; y <= epfHoriz; y++) {
-          for (let m = 1; m <= 12; m++) {
-            let monthlyContrib = currSal * ((epfEmp + epfEmpr) / 100);
-            epfCorpus += monthlyContrib;
-            epfValue = (epfValue + monthlyContrib) * (1 + epfRate);
-          }
-          currSal *= 1 + epfHike / 100;
-        }
-
-        document.getElementById("resEpfCorpus").innerHTML =
-          `${formatCurrency(epfCorpus)} ${formatSmallUnit(epfCorpus)}`;
-        document.getElementById("resEpfGains").innerHTML =
-          `${formatCurrency(epfValue - epfCorpus)} ${formatSmallUnit(epfValue - epfCorpus)}`;
-        document.getElementById("resEpfTotal").innerHTML =
-          `${formatCurrency(epfValue)} ${formatSmallUnit(epfValue)}`;
-
-        // --- Grand Totals ---
-        const totalCorpus = sipCorpus + savCorpus + epfCorpus;
-        const totalValue = sipValue + savValue + epfValue;
-        const totalGains = totalValue - totalCorpus;
-
-        globalNetWorth = totalValue;
-
-        document.getElementById("nwTotal").innerText =
-          formatCurrency(totalValue);
-        document.getElementById("nwUnit").innerText = formatUnit(totalValue);
-
-        document.getElementById("nwCorpus").innerText =
-          formatCurrency(totalCorpus);
-        document.getElementById("nwCorpusUnit").innerText =
-          formatUnit(totalCorpus);
-
-        document.getElementById("nwGains").innerText =
-          formatCurrency(totalGains);
-        document.getElementById("nwGainsUnit").innerText =
-          formatUnit(totalGains);
-      }
-
-      function calculateSWP() {
-        const totalInv =
-          parseFloat(document.getElementById("swpTotal").value) || 0;
-        const returnRate =
-          (parseFloat(document.getElementById("swpReturn").value) || 0) /
-          12 /
-          100;
-        const inflation =
-          parseFloat(document.getElementById("swpInflation").value) || 0;
-        const horizon =
-          parseInt(document.getElementById("swpHorizon").value) || 0;
-        const method = document.getElementById("swpMethod").value;
-
-        let initialMonthly = 0;
-        if (method === "swr") {
-          const swr = parseFloat(document.getElementById("swpSWR").value) || 0;
-          initialMonthly = (totalInv * (swr / 100)) / 12;
-        } else {
-          initialMonthly =
-            parseFloat(document.getElementById("swpIncome").value) || 0;
-        }
-
-        let portfolio = totalInv;
-        let currentMonthly = initialMonthly;
-
-        const tbody = document.getElementById("swpTableBody");
-        tbody.innerHTML = "";
-
-        for (let year = 1; year <= horizon; year++) {
-          if (year > 1) {
-            currentMonthly *= 1 + inflation / 100;
-          }
-
-          for (let month = 1; month <= 12; month++) {
-            if (portfolio > 0) {
-              portfolio = portfolio * (1 + returnRate) - currentMonthly;
-            }
-            if (portfolio < 0) portfolio = 0;
-          }
-
-          let row = document.createElement("tr");
-          row.innerHTML = `
-                <td>${year}</td>
-                <td style="color: var(--accent-orange); font-weight: 500;">${formatCurrency(currentMonthly)} ${formatUnit(currentMonthly)}</td>
-                <td style="color: ${portfolio > 0 ? "inherit" : "var(--danger)"};">${formatCurrency(portfolio)} ${formatUnit(portfolio)}</td>
-            `;
-          tbody.appendChild(row);
-
-          if (portfolio <= 0) break;
-        }
-
-        document.getElementById("swpTableSection").style.display = "flex";
-      }
-
-      // Run setup on load
-      window.onload = () => {
-        updateInputUnits();
-
-        document
-          .getElementById("swpTotal")
-          .addEventListener("input", updateSWRReadout);
-        document
-          .getElementById("swpSWR")
-          .addEventListener("input", updateSWRReadout);
-
-        updateSWRReadout();
-        calculateNetWorth();
-      };
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
