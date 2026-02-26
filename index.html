@@ -1,406 +1,277 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Net Worthy | Total Net Worth & Retirement Dashboard</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="dashboard">
-      <div class="full-width net-worth-banner" id="netWorthBanner">
-        <div>Estimated Total Net Worth</div>
-        <div class="net-worth-value">
-          <span id="nwTotal">₹0</span
-          ><span class="unit-text" id="nwUnit"></span>
-        </div>
 
-        <div class="breakdown-row">
-          <div class="breakdown-item">
-            <span>Total Pure Investment (Corpus)</span>
-            <strong
-              ><span id="nwCorpus">₹0</span
-              ><span
-                class="unit-text"
-                id="nwCorpusUnit"
-                style="font-size: 0.8rem"
-              ></span
-            ></strong>
-          </div>
-          <div class="breakdown-item">
-            <span>Total Wealth Gained (Interest)</span>
-            <strong style="color: #34c759"
-              ><span id="nwGains">₹0</span
-              ><span
-                class="unit-text"
-                id="nwGainsUnit"
-                style="font-size: 0.8rem; color: #a1a1a6"
-              ></span
-            ></strong>
-          </div>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Net Worthy | Total Net Worth & Retirement Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-      <div class="glass-card">
-        <div class="card-header">📈 SIP Portfolio</div>
-        <div class="input-grid" style="margin-bottom: 20px">
-          <div class="input-group">
-            <label>Monthly SIP (₹)</label>
-            <input
-              type="number"
-              id="sipAmount"
-              value="15000"
-              data-currency="true"
-            />
-            <div class="input-unit" id="unit-sipAmount"></div>
-          </div>
-          <div class="input-group">
-            <label>Step-up Annually (%)</label>
-            <input type="number" id="sipStepUp" value="10" />
-          </div>
-          <div class="input-group">
-            <label>Expected Return (p.a. %)</label>
-            <input type="number" id="sipReturn" value="12" />
-          </div>
-          <div class="input-group">
-            <label>Expected Inflation (%)</label>
-            <input type="number" id="sipInflation" value="6" />
-          </div>
-          <div class="input-group">
-            <label>Horizon (Years)</label>
-            <input type="number" id="sipHorizon" value="15" />
-          </div>
-        </div>
-        <div class="result-box">
-          <div class="result-row">
-            <span>Invested Corpus:</span> <span id="resSipCorpus">₹0</span>
-          </div>
-          <div class="result-row">
-            <span>Wealth Gained:</span> <span id="resSipGains">₹0</span>
-          </div>
-          <div class="result-row">
-            <span>Final SIP Value:</span> <span id="resSipTotal">₹0</span>
-          </div>
-        </div>
-      </div>
+<body>
 
-      <div class="glass-card">
-        <div class="card-header">🏦 Pure Savings / FD</div>
-        <div class="input-grid" style="margin-bottom: 20px">
-          <div class="input-group">
-            <label>Monthly Savings (₹)</label>
-            <input
-              type="number"
-              id="savAmount"
-              value="10000"
-              data-currency="true"
-            />
-            <div class="input-unit" id="unit-savAmount"></div>
-          </div>
-          <div class="input-group">
-            <label>Step-up Annually (%)</label>
-            <input type="number" id="savStepUp" value="10" />
-          </div>
-          <div class="input-group">
-            <label>Compounding Return (% Optional)</label>
-            <input type="number" id="savReturn" value="6" />
-          </div>
-          <div class="input-group">
-            <label>Duration (Years)</label>
-            <input type="number" id="savHorizon" value="15" />
-          </div>
-        </div>
-        <div class="result-box">
-          <div class="result-row">
-            <span>Invested Corpus:</span> <span id="resSavCorpus">₹0</span>
-          </div>
-          <div class="result-row">
-            <span>Wealth Gained:</span> <span id="resSavGains">₹0</span>
-          </div>
-          <div class="result-row">
-            <span>Final Savings Value:</span> <span id="resSavTotal">₹0</span>
-          </div>
-        </div>
-      </div>
+  <div class="dashboard">
 
-      <div class="glass-card full-width">
-        <div class="card-header">🏢 Provident Fund (EPF)</div>
-        <div class="epf-split">
-          <div class="input-grid">
-            <div class="input-group">
-              <label>Monthly Basic Salary (₹)</label>
-              <input
-                type="number"
-                id="epfSalary"
-                value="50000"
-                data-currency="true"
-              />
-              <div class="input-unit" id="unit-epfSalary"></div>
-            </div>
-            <div class="input-group">
-              <label>Annual Salary Hike (%)</label>
-              <input type="number" id="epfHike" value="5" />
-            </div>
-            <div class="input-group">
-              <label>EPF Rate (%)</label>
-              <input type="number" id="epfRate" value="8.25" />
-            </div>
-            <div class="input-group">
-              <label>Employee Contrib. (%)</label>
-              <input type="number" id="epfEmp" value="12" />
-            </div>
-            <div class="input-group">
-              <label>Employer Contrib. (%)</label>
-              <input type="number" id="epfEmpr" value="3.67" />
-            </div>
-            <div class="input-group">
-              <label>Horizon (Years)</label>
-              <input type="number" id="epfHorizon" value="15" />
-            </div>
-          </div>
-          <div
-            class="result-box"
-            style="
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              margin-top: 0;
-            "
-          >
-            <div class="result-row">
-              <span>Total Contributions:</span>
-              <span id="resEpfCorpus">₹0</span>
-            </div>
-            <div class="result-row">
-              <span>Interest Earned:</span> <span id="resEpfGains">₹0</span>
-            </div>
-            <div class="result-row">
-              <span>Total EPF Value:</span> <span id="resEpfTotal">₹0</span>
-            </div>
-          </div>
+    <div class="full-width net-worth-banner" id="netWorthBanner">
+      <div>Estimated Total Net Worth</div>
+      <div class="net-worth-value"><span id="nwTotal">₹0</span><span class="unit-text" id="nwUnit"></span></div>
+
+      <div class="breakdown-row">
+        <div class="breakdown-item">
+          <span>Total Pure Investment (Corpus)</span>
+          <strong><span id="nwCorpus">₹0</span><span class="unit-text" id="nwCorpusUnit"
+              style="font-size: 0.8rem;"></span></strong>
         </div>
-      </div>
-
-      <div class="full-width">
-        <button
-          class="btn-primary"
-          onclick="calculateNetWorth()"
-          style="margin-top: 0"
-        >
-          Calculate My Net Worth
-        </button>
-      </div>
-
-      <div
-        class="glass-card full-width"
-        id="sipTableSection"
-        style="display: none"
-      >
-        <div class="card-header">
-          <div>📊 Net Worth Projection Table</div>
-          <div
-            style="
-              font-size: 0.8rem;
-              color: var(--text-muted);
-              font-weight: normal;
-              margin-left: auto;
-            "
-          >
-            * I-A = Inflation-Adjusted
-          </div>
-        </div>
-        <div class="table-container" style="max-height: 500px">
-          <table>
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Monthly Salary (Nominal)</th>
-                <th>Monthly Salary (I-A)</th>
-                <th>Monthly SIP (Nominal)</th>
-                <th>Monthly SIP (I-A)</th>
-                <th>Monthly Savings (Nominal)</th>
-                <th>Monthly Savings (I-A)</th>
-                <th>SIP Portfolio Value (Nominal)</th>
-                <th>SIP Portfolio Value (I-A)</th>
-              </tr>
-            </thead>
-            <tbody id="sipTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="full-width two-col-grid" style="margin-top: 10px">
-        <div class="glass-card">
-          <div class="card-header" style="justify-content: space-between">
-            <div>📉 Inflation Value</div>
-            <button
-              onclick="pullNetWorthToInflation()"
-              style="
-                background: var(--text-main);
-                color: #fff;
-                border: none;
-                border-radius: 8px;
-                padding: 6px 12px;
-                cursor: pointer;
-                font-size: 0.8rem;
-              "
-            >
-              Use Net Worth
-            </button>
-          </div>
-          <div class="input-grid" style="margin-bottom: 20px">
-            <div class="input-group">
-              <label>Corpus (₹)</label>
-              <input
-                type="number"
-                id="infCorpus"
-                value="10000000"
-                data-currency="true"
-              />
-              <div class="input-unit" id="unit-infCorpus"></div>
-            </div>
-            <div class="input-group">
-              <label>Annual Inflation Rate (%)</label>
-              <input type="number" id="infRate" value="6" />
-            </div>
-            <div class="input-group">
-              <label>Horizon (Years)</label>
-              <input type="number" id="infHorizon" value="15" />
-            </div>
-          </div>
-          <button
-            class="btn-primary"
-            onclick="calculateInflation()"
-            style="margin-bottom: 20px"
-          >
-            Calculate Real Value
-          </button>
-          <div class="result-box">
-            <div class="result-row">
-              <span>Purchasing Power (Adjusted Value):</span>
-              <span
-                id="resInfValue"
-                style="color: var(--danger); font-size: 1.1rem"
-                >₹0</span
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="glass-card">
-          <div class="card-header" style="justify-content: space-between">
-            <div>💸 Systematic Withdrawal</div>
-            <button
-              onclick="pullIAWorthToSWP()"
-              style="
-                background: var(--text-main);
-                color: #fff;
-                border: none;
-                border-radius: 8px;
-                padding: 6px 12px;
-                cursor: pointer;
-                font-size: 0.8rem;
-              "
-            >
-              Use I-A Worth
-            </button>
-          </div>
-          <div class="input-grid" style="margin-bottom: 20px">
-            <div class="input-group">
-              <label>Total Investment Value (₹)</label>
-              <input
-                type="number"
-                id="swpTotal"
-                value="20000000"
-                data-currency="true"
-              />
-              <div class="input-unit" id="unit-swpTotal"></div>
-            </div>
-            <div class="input-group">
-              <label>Expected Return (p.a. %)</label>
-              <input type="number" id="swpReturn" value="8" />
-            </div>
-            <div class="input-group">
-              <label>Annual Inflation (%)</label>
-              <input type="number" id="swpInflation" value="6" />
-            </div>
-            <div class="input-group">
-              <label>Withdrawal Horizon (Years)</label>
-              <input type="number" id="swpHorizon" value="20" />
-            </div>
-
-            <div class="input-group">
-              <label>Withdrawal Method</label>
-              <select id="swpMethod" onchange="toggleSWPInput()">
-                <option value="swr">Safe Withdrawal Rate (%)</option>
-                <option value="fixed">Fixed Monthly Income (₹)</option>
-              </select>
-            </div>
-            <div class="input-group swp-swr-input">
-              <label>Safe Withdrawal Rate (%)</label>
-              <input type="number" id="swpSWR" value="4" step="0.1" />
-              <div
-                class="input-unit"
-                id="swrReadout"
-                style="color: var(--accent-green); font-weight: 600"
-              ></div>
-            </div>
-            <div class="input-group swp-income-input">
-              <label>Year 1 Monthly Income (₹)</label>
-              <input
-                type="number"
-                id="swpIncome"
-                value="60000"
-                data-currency="true"
-              />
-              <div class="input-unit" id="unit-swpIncome"></div>
-            </div>
-          </div>
-
-          <button class="btn-primary" onclick="calculateSWP()">
-            Calculate SWP
-          </button>
-        </div>
-      </div>
-
-      <div
-        class="glass-card full-width"
-        id="swpTableSection"
-        style="display: none; margin-top: 15px"
-      >
-        <div class="card-header">
-          <div>🔮 Withdrawal Projection</div>
-          <div
-            style="
-              font-size: 0.8rem;
-              color: var(--text-muted);
-              font-weight: normal;
-              margin-left: auto;
-            "
-          >
-            * I-A = Inflation-Adjusted
-          </div>
-        </div>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Monthly Withdrawal (I-A)</th>
-                <th>Portfolio Value (Nominal)</th>
-                <th>Portfolio Value (I-A)</th>
-              </tr>
-            </thead>
-            <tbody id="swpTableBody"></tbody>
-          </table>
+        <div class="breakdown-item">
+          <span>Total Wealth Gained (Interest)</span>
+          <strong style="color: #34c759;"><span id="nwGains">₹0</span><span class="unit-text" id="nwGainsUnit"
+              style="font-size: 0.8rem; color: #a1a1a6;"></span></strong>
         </div>
       </div>
     </div>
 
-    <script src="script.js"></script>
-  </body>
+    <div class="glass-card">
+      <div class="card-header">📈 SIP Portfolio</div>
+      <div class="input-grid" style="margin-bottom: 20px;">
+        <div class="input-group">
+          <label>Monthly SIP (₹)</label>
+          <input type="number" id="sipAmount" value="15000" data-currency="true">
+          <div class="input-unit" id="unit-sipAmount"></div>
+        </div>
+        <div class="input-group">
+          <label>Step-up Annually (%)</label>
+          <input type="number" id="sipStepUp" value="10">
+        </div>
+        <div class="input-group">
+          <label>Expected Return (p.a. %)</label>
+          <input type="number" id="sipReturn" value="12">
+        </div>
+        <div class="input-group">
+          <label>Expected Inflation (%)</label>
+          <input type="number" id="sipInflation" value="6">
+        </div>
+        <div class="input-group">
+          <label>Horizon (Years)</label>
+          <input type="number" id="sipHorizon" value="15">
+        </div>
+      </div>
+      <div class="result-box">
+        <div class="result-row"><span>Invested Corpus:</span> <span id="resSipCorpus">₹0</span></div>
+        <div class="result-row"><span>Wealth Gained:</span> <span id="resSipGains">₹0</span></div>
+        <div class="result-row"><span>Final SIP Value:</span> <span id="resSipTotal">₹0</span></div>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">🏦 Pure Savings / FD</div>
+      <div class="input-grid" style="margin-bottom: 20px;">
+        <div class="input-group">
+          <label>Monthly Savings (₹)</label>
+          <input type="number" id="savAmount" value="10000" data-currency="true">
+          <div class="input-unit" id="unit-savAmount"></div>
+        </div>
+        <div class="input-group">
+          <label>Step-up Annually (%)</label>
+          <input type="number" id="savStepUp" value="10">
+        </div>
+        <div class="input-group">
+          <label>Compounding Return (% Optional)</label>
+          <input type="number" id="savReturn" value="6">
+        </div>
+        <div class="input-group">
+          <label>Duration (Years)</label>
+          <input type="number" id="savHorizon" value="15">
+        </div>
+      </div>
+      <div class="result-box">
+        <div class="result-row"><span>Invested Corpus:</span> <span id="resSavCorpus">₹0</span></div>
+        <div class="result-row"><span>Wealth Gained:</span> <span id="resSavGains">₹0</span></div>
+        <div class="result-row"><span>Final Savings Value:</span> <span id="resSavTotal">₹0</span></div>
+      </div>
+    </div>
+
+    <div class="glass-card full-width">
+      <div class="card-header">🏢 Provident Fund (EPF)</div>
+      <div class="epf-split">
+        <div class="input-grid">
+          <div class="input-group">
+            <label>Monthly Salary (₹)</label>
+            <input type="number" id="epfSalary" value="100000" data-currency="true">
+            <div class="input-unit" id="unit-epfSalary"></div>
+          </div>
+          <div class="input-group">
+            <label>Basic Pay (%)</label>
+            <input type="number" id="epfBasicPercent" value="50">
+          </div>
+          <div class="input-group">
+            <label>Annual Salary Hike (%)</label>
+            <input type="number" id="epfHike" value="5">
+          </div>
+          <div class="input-group">
+            <label>EPF Rate (%)</label>
+            <input type="number" id="epfRate" value="8.25">
+          </div>
+          <div class="input-group">
+            <label>Employee Contrib. (%)</label>
+            <input type="number" id="epfEmp" value="12">
+          </div>
+          <div class="input-group">
+            <label>Employer Contrib. (%)</label>
+            <input type="number" id="epfEmpr" value="3.67">
+          </div>
+          <div class="input-group">
+            <label>Horizon (Years)</label>
+            <input type="number" id="epfHorizon" value="15">
+          </div>
+        </div>
+        <div class="result-box" style="display: flex; flex-direction: column; justify-content: center; margin-top: 0;">
+          <div class="result-row"><span>Total Contributions:</span> <span id="resEpfCorpus">₹0</span></div>
+          <div class="result-row"><span>Interest Earned:</span> <span id="resEpfGains">₹0</span></div>
+          <div class="result-row"><span>Total EPF Value:</span> <span id="resEpfTotal">₹0</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-width">
+      <button class="btn-primary" onclick="calculateNetWorth()" style="margin-top: 0;">Calculate My Net Worth</button>
+    </div>
+
+    <div class="glass-card full-width" id="sipTableSection" style="display: none;">
+      <div class="card-header">
+        <div>📊 Net Worth Projection Table</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal; margin-left: auto;">* I-A =
+          Inflation-Adjusted</div>
+      </div>
+      <div class="table-container" style="max-height: 500px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Monthly Salary (Nominal)</th>
+              <th>Monthly Salary (I-A)</th>
+              <th>Monthly SIP (Nominal)</th>
+              <th>Monthly SIP (I-A)</th>
+              <th>Monthly Savings (Nominal)</th>
+              <th>Monthly Savings (I-A)</th>
+              <th>SIP Portfolio Value (Nominal)</th>
+              <th>SIP Portfolio Value (I-A)</th>
+            </tr>
+          </thead>
+          <tbody id="sipTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="full-width two-col-grid" style="margin-top: 10px;">
+
+      <div class="glass-card">
+        <div class="card-header" style="justify-content: space-between;">
+          <div>📉 Inflation Value</div>
+          <button onclick="pullNetWorthToInflation()"
+            style="background: var(--text-main); color: #fff; border:none; border-radius: 8px; padding: 6px 12px; cursor:pointer; font-size: 0.8rem;">
+            Use Net Worth
+          </button>
+        </div>
+        <div class="input-grid" style="margin-bottom: 20px;">
+          <div class="input-group">
+            <label>Corpus (₹)</label>
+            <input type="number" id="infCorpus" value="10000000" data-currency="true">
+            <div class="input-unit" id="unit-infCorpus"></div>
+          </div>
+          <div class="input-group">
+            <label>Annual Inflation Rate (%)</label>
+            <input type="number" id="infRate" value="6">
+          </div>
+          <div class="input-group">
+            <label>Horizon (Years)</label>
+            <input type="number" id="infHorizon" value="15">
+          </div>
+        </div>
+        <button class="btn-primary" onclick="calculateInflation()" style="margin-bottom: 20px;">Calculate Real
+          Value</button>
+        <div class="result-box">
+          <div class="result-row">
+            <span>Purchasing Power (Adjusted Value):</span>
+            <span id="resInfValue" style="color: var(--danger); font-size: 1.1rem;">₹0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <div class="card-header" style="justify-content: space-between;">
+          <div>💸 Systematic Withdrawal</div>
+          <button onclick="pullIAWorthToSWP()"
+            style="background: var(--text-main); color: #fff; border:none; border-radius: 8px; padding: 6px 12px; cursor:pointer; font-size: 0.8rem;">
+            Use I-A Worth
+          </button>
+        </div>
+        <div class="input-grid" style="margin-bottom: 20px;">
+          <div class="input-group">
+            <label>Total Investment Value (₹)</label>
+            <input type="number" id="swpTotal" value="20000000" data-currency="true">
+            <div class="input-unit" id="unit-swpTotal"></div>
+          </div>
+          <div class="input-group">
+            <label>Expected Return (p.a. %)</label>
+            <input type="number" id="swpReturn" value="8">
+          </div>
+          <div class="input-group">
+            <label>Annual Inflation (%)</label>
+            <input type="number" id="swpInflation" value="6">
+          </div>
+          <div class="input-group">
+            <label>Withdrawal Horizon (Years)</label>
+            <input type="number" id="swpHorizon" value="20">
+          </div>
+
+          <div class="input-group">
+            <label>Withdrawal Method</label>
+            <select id="swpMethod" onchange="toggleSWPInput()">
+              <option value="swr">Safe Withdrawal Rate (%)</option>
+              <option value="fixed">Fixed Monthly Income (₹)</option>
+            </select>
+          </div>
+          <div class="input-group swp-swr-input">
+            <label>Safe Withdrawal Rate (%)</label>
+            <input type="number" id="swpSWR" value="4" step="0.1">
+            <div class="input-unit" id="swrReadout" style="color: var(--accent-green); font-weight: 600;"></div>
+          </div>
+          <div class="input-group swp-income-input">
+            <label>Year 1 Monthly Income (₹)</label>
+            <input type="number" id="swpIncome" value="60000" data-currency="true">
+            <div class="input-unit" id="unit-swpIncome"></div>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="calculateSWP()">Calculate SWP</button>
+      </div>
+    </div>
+
+    <div class="glass-card full-width" id="swpTableSection" style="display: none; margin-top: 15px;">
+      <div class="card-header">
+        <div>🔮 Withdrawal Projection</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal; margin-left: auto;">* I-A =
+          Inflation-Adjusted</div>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Monthly Withdrawal (I-A)</th>
+              <th>Portfolio Value (Nominal)</th>
+              <th>Portfolio Value (I-A)</th>
+            </tr>
+          </thead>
+          <tbody id="swpTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
