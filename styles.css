@@ -30,7 +30,7 @@ body {
 }
 
 .dashboard {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -49,12 +49,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
-    align-items: stretch;
-  }
-  .epf-split {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
     align-items: stretch;
   }
 }
@@ -159,6 +153,23 @@ button.btn-primary:active {
   transform: scale(0.98);
 }
 
+.export-btn {
+  background: rgba(0, 122, 255, 0.1);
+  color: var(--accent-blue);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.export-btn:hover {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
 .net-worth-banner {
   background: linear-gradient(135deg, var(--text-main) 0%, #434343 100%);
   color: white;
@@ -197,6 +208,46 @@ button.btn-primary:active {
 }
 .breakdown-item strong {
   font-size: 1.2rem;
+}
+
+/* Cash Flow Card */
+.cash-flow-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.cash-flow-title {
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.cash-flow-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.stat-item .label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.stat-item .val {
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .result-box {
@@ -258,6 +309,7 @@ th {
   position: sticky;
   top: 0;
   backdrop-filter: blur(10px);
+  z-index: 10;
 }
 
 .swp-income-input {
